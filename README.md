@@ -11,6 +11,9 @@ LifeGen v0.7.7.5 with a few crash fixes.
   with Main Menu or Previous Step. Saves that already have this get fixed when loaded.
 - Fixed your cat becoming an apprentice while still 5 moons old after picking their path. The moon
   now goes on right after you pick, so you start as an apprentice at 6 moons.
+- Fixed outsiders in a rogue group, loner group or household that your cat isn't part of
+  stopping aging at a random point. They were skipped every moon, now they age and get their
+  moon events again.
 
 If any of the official LifeGen devs see this, you're more than welcome to use these edits!
 
