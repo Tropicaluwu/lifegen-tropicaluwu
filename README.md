@@ -1,3 +1,17 @@
+# Lifegen - Tropicaluwu edition
+
+LifeGen v0.7.7.5 with a few crash fixes.
+
+### What was fixed
+- Saves no longer fail to load with "There was an error loading the clan.json" when the Clan's
+  leader, deputy or medicine cat is missing from the save. The role is just left empty.
+- Fixed a crash during the moon when an apprentice's mentor is missing from the save.
+- Fixed a crash when an event planned for a later moon involves a cat who is missing from the save.
+
+If any of the official LifeGen devs see this, you're more than welcome to use these edits!
+
+---
+
 # LifeGen - A ClanGen Mod
 
 ## On AI & LLMs
