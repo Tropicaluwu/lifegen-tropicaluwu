@@ -3555,7 +3555,8 @@ def handle_apprentice_EX(cat):
             ran = constants.CONFIG["graduation"]["base_app_timeskip_ex"]
 
         mentor_modifier = 1
-        if not cat.mentor or Cat.fetch_cat(cat.mentor).not_working():
+        mentor = Cat.fetch_cat(cat.mentor) if cat.mentor else None
+        if not mentor or mentor.not_working():
             # Sick mentor debuff
             mentor_modifier = 0.7
             mentor_skill_modifier = 0

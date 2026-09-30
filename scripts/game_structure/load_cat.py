@@ -39,6 +39,28 @@ def load_cats():
             raise
 
 
+def clear_missing_cat_links(cats):
+    """Clears links to cats that aren't in the save anymore, living, dead or faded: parents,
+    mates, mentors and apprentices. The family tree and apprentice code look these cats up and
+    crashed when one was missing."""
+    for cat in cats:
+        for field in ("parent1", "parent2", "parent3", "mentor"):
+            other_id = getattr(cat, field, None)
+            if other_id and not Cat.fetch_cat(other_id):
+                logger.warning(f"Cat #{cat.ID} had a missing {field} ({other_id}), removed it.")
+                setattr(cat, field, None)
+        for field in (
+            "adoptive_parents", "surrogate_parents", "affair_parents",
+            "mate", "former_mentor", "apprentice", "former_apprentices",
+        ):
+            other_ids = getattr(cat, field, None)
+            if other_ids:
+                kept = [i for i in other_ids if Cat.fetch_cat(i)]
+                if len(kept) != len(other_ids):
+                    logger.warning(f"Cat #{cat.ID} had missing cats in {field}, removed them.")
+                    setattr(cat, field, kept)
+
+
 def json_load():
     Cat.all_cats.clear()
     Cat.all_cats_list.clear()
@@ -418,6 +440,8 @@ def json_load():
             )
             switch_set_value(Switch.traceback, e)
             raise
+
+    clear_missing_cat_links(all_cats)
 
     # replace cat ids with cat objects and add other needed variables
     other_clan_cats = [c for c in Cat.all_cats_list if c.status.is_other_clancat]
