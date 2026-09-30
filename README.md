@@ -7,6 +7,8 @@ LifeGen v0.7.7.5 with a few crash fixes.
   leader, deputy or medicine cat is missing from the save. The role is just left empty.
 - Fixed a crash during the moon when an apprentice's mentor is missing from the save.
 - Fixed a crash when an event planned for a later moon involves a cat who is missing from the save.
+- Fixed your cat disappearing (and their profile crashing) after leaving "customise new life" early
+  with Main Menu or Previous Step. Saves that already have this get fixed when loaded.
 
 If any of the official LifeGen devs see this, you're more than welcome to use these edits!
 
