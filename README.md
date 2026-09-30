@@ -9,6 +9,8 @@ LifeGen v0.7.7.5 with a few crash fixes.
 - Fixed a crash when an event planned for a later moon involves a cat who is missing from the save.
 - Fixed your cat disappearing (and their profile crashing) after leaving "customise new life" early
   with Main Menu or Previous Step. Saves that already have this get fixed when loaded.
+- Fixed your cat becoming an apprentice while still 5 moons old after picking their path. The moon
+  now goes on right after you pick, so you start as an apprentice at 6 moons.
 
 If any of the official LifeGen devs see this, you're more than welcome to use these edits!
 
