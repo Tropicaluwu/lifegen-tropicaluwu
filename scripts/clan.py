@@ -1254,6 +1254,13 @@ class Clan:
             else:
                 print("No eligible cat found to assign as your_cat.")
 
+        # a leader, deputy or medicine cat who isn't in the save anymore leaves the role empty,
+        # instead of the whole Clan failing to load
+        for role in ("leader", "deputy", "med_cat"):
+            if clan_data[role] and clan_data[role] not in Cat.all_cats:
+                print(f"WARNING: {role} {clan_data[role]} isn't in the save, leaving the role empty")
+                clan_data[role] = None
+
         if clan_data["leader"]:
             leader = Cat.all_cats[clan_data["leader"]]
             leader_lives = clan_data["leader_lives"]
