@@ -298,7 +298,13 @@ def _one_moon_impl():
         # if cat.status.alive_in_player_clan or cat.status.group.is_afterlife():
         if cat.status.alive_in_your_cat_group or cat.status.alive_in_player_clan or cat.status.group.is_afterlife():
             one_moon_cat(cat)
-        elif not cat.status.group or cat.status.is_other_clancat:
+        elif (
+            not cat.status.group
+            or cat.status.is_other_clancat
+            # cats in a rogue group, loner group or household your cat isn't part of anymore
+            # still get their moon, before they were skipped and stopped aging
+            or cat.status.group_ID in (CatGroup.ROGUE_GROUP_ID, CatGroup.LONER_GROUP_ID, CatGroup.HOUSEHOLD_ID)
+        ):
             one_moon_outside_cat(cat, other_clan_cats)
 
     # keeping this commented out till disasters are more polished
