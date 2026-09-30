@@ -137,6 +137,12 @@ class PickPath(GameWindow):
                 if status:
                     game.clan.your_cat.rank_change(status)
                     self.kill()
+                    # the path is picked at the end of 5 moons, so the moon goes on right away and your cat
+                    # starts as an apprentice at 6 moons, not while still 5
+                    if self.last_screen == 'events screen':
+                        from scripts.screens.all_screens import get_screen
+                        from scripts.screens.enums import GameScreen
+                        get_screen(GameScreen.EVENTS).start_timeskip()
         except Exception as e:
             print('Error with PickPath window!')
             print(e)

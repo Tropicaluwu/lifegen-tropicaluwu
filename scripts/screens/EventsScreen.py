@@ -140,6 +140,13 @@ class EventsScreen(Screens):
 
         self.first_opened = False
 
+    def start_timeskip(self):
+        # starts the moon, also used right after picking your path at 5 moons
+        self.timeskip_button.disable()
+        self.events_thread = self.loading_screen_start_work(events.one_moon)
+        # rebuild_moon_n_season_indicator(change_moon=True, visible=True)
+        self.save_button.reset_save()
+
     def handle_event(self, event):
         # ON HOVER
         if event.type == pygame_gui.UI_BUTTON_ON_HOVERED:
@@ -212,10 +219,7 @@ class EventsScreen(Screens):
                     ):
                     ChooseDeputyWindow('events screen')
                 else:
-                    self.timeskip_button.disable()
-                    self.events_thread = self.loading_screen_start_work(events.one_moon)
-                    # rebuild_moon_n_season_indicator(change_moon=True, visible=True)
-                    self.save_button.reset_save()
+                    self.start_timeskip()
 
             elif self.death_button and event.ui_element == self.death_button:
                 DeathScreen('events screen')
