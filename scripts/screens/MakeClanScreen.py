@@ -391,6 +391,10 @@ class MakeClanScreen(Screens):
     def handle_event(self, event):
         if event.type == pygame_gui.UI_BUTTON_START_PRESS:
             if event.ui_element == self.main_menu:
+                # leaving a new life early, the kits made to choose from have to go
+                if switch_get_value(Switch.customise_new_life):
+                    self.delete_example_cats()
+                    switch_set_value(Switch.customise_new_life, False)
                 self.change_screen(GameScreen.START)
             elif self.sub_screen == "name clan":
                 self.handle_name_clan_event(event)
@@ -513,6 +517,7 @@ class MakeClanScreen(Screens):
             self.open_name_cat()
         elif event.ui_element == self.elements['previous_step']:
             if switch_get_value(Switch.customise_new_life):
+                self.delete_example_cats()
                 self.change_screen(game.last_screen_forupdate)
                 switch_set_value(Switch.customise_new_life, False)
             else:

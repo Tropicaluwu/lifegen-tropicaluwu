@@ -1451,6 +1451,11 @@ class Clan:
                 game.used_group_IDs[ID] = CatGroup(game.used_group_IDs[ID])
         # ---
 
+        # your cat always belongs on the roster. A new life that was left early could leave them off it,
+        # and then the main menu cleared them out of the game
+        if game.clan.your_cat and game.clan.your_cat.ID not in clan_data["clan_cats"].split(","):
+            game.clan.add_cat(game.clan.your_cat)
+
         for cat in clan_data["clan_cats"].split(","):
             if cat in Cat.all_cats:
                 game.clan.add_cat(Cat.all_cats[cat])

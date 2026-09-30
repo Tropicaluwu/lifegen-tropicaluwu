@@ -4158,6 +4158,12 @@ class Cat:
             sorted_specific_list.remove(game.clan.instructor)
             sorted_specific_list.insert(0, game.clan.instructor)
 
+        # the cat always belongs in its own list. If something left them out, put them back instead of crashing
+        if self not in sorted_specific_list:
+            print(f"WARNING: {self.name} ({self.ID}) wasn't in their own next/previous list, faded={self.faded} "
+                  f"moons={self.moons} in all_cats_list={self in Cat.all_cats_list}")
+            sorted_specific_list.insert(0, self)
+
         idx = sorted_specific_list.index(self)
 
         return (
