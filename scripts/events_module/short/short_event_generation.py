@@ -58,8 +58,9 @@ def create_short_event(
     :param sub_type: The required subtypes for this event.
     :param future_event: If this is being triggered by a future event, pass the future event object here.
     """
+    # a future event whose cat isn't in the save anymore is dropped the same way
     if future_event and (
-        not main_cat.status.alive_in_player_clan
+        not (main_cat and main_cat.status.alive_in_player_clan)
         or (random_cat and not random_cat.status.alive_in_player_clan)
     ):
         # we set this to true because we want it to be considered triggered and thus removed
