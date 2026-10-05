@@ -14,6 +14,8 @@ LifeGen v0.7.7.5 with a few crash fixes.
 - Fixed outsiders in a rogue group, loner group or household that your cat isn't part of
   stopping aging at a random point. They were skipped every moon, now they age and get their
   moon events again.
+- Fixed a crash while talking to a cat when one of the typing sounds couldn't be loaded on your
+  computer. That sound is just skipped now.
 
 If any of the official LifeGen devs see this, you're more than welcome to use these edits!
 
