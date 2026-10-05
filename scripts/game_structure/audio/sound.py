@@ -89,6 +89,9 @@ class Sound:
 
         try:
             if pygame.mixer.find_channel():
+                # a sound whose files failed to load has an empty list, skip it instead of crashing
+                if not self.sound_dict[sound]:
+                    return
                 chosen = random.choice(self.sound_dict[sound])
                 chosen.play()
         except KeyError:
